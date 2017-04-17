@@ -1,0 +1,4 @@
+http://infohost.nmt.edu/tcc/help/pubs/tkinter/web/canvas-methods.html
+gestion des tags:
+  variable = "porte ou" + str(i)
+  i += 1

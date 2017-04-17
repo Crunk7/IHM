@@ -97,6 +97,10 @@ def clic(canva, bouton):
     elif(bouton == 'lien'):
         canva.bind("<Button-1>", lambda event, canva=canva:
                    create_lien1(event, canva))
+    """elif (bouton == 'radarmoteur'):
+        canva.bind("<Button-1>", lambda event, canva=canva:
+                   activer_radarmoteur(event, canva))
+    """
     print(coordonne)
     lastbutton = bouton
 
@@ -238,13 +242,14 @@ def supprimer(event, canva):
     """
     global i, coordonne
     nom = canva.gettags("current")
-    j = nom[0][-1]
-    canva.tag_unbind("porte"+j, "<Button-1>")
-    # supprime l'image de la porte et on met son etat a off dans coordonne
-    j = nom[0][-1]
-    print("j = ", j)
-    coordonne[int(j)][2] = "off"
-    canva.delete(nom[0])
+    if ("porte" in nom):
+        j = nom[0][-1]
+        canva.tag_unbind("porte"+j, "<Button-1>")
+        # supprime l'image de la porte et on met son etat a off dans coordonne
+        j = nom[0][-1]
+        print("j = ", j)
+        coordonne[int(j)][2] = "off"
+        canva.delete(nom[0])
 
 
 def create_lien1(event, canva):
@@ -328,9 +333,31 @@ def create_lien2(event, x, y, widget1, canva):
                    create_lien1(event, canva))
         # mettre une fonction pour afficher une bulle d'aide
 
-def create_radar(canva):
+
+
+def create_radarmoteur(canva):
     global i
-    radar1 = canva.create_rectangle
+    radar1 = canva.create_rectangle(55, 170, 70, 185, outline='white',
+                                    fill='black')
+    radar2 = canva.create_rectangle(55, 320, 70, 335, outline='white',
+                                    fill='black')
+    radar3 = canva.create_rectangle(55, 470, 70, 485, outline='white',
+                                    fill='black')
+    radar4 = canva.create_rectangle(55, 620, 70, 635, outline='white',
+                                    fill='black')
+
+    moteur1 = canva.create_rectangle(1115, 170, 1130, 185, outline='white',
+                                     fill='black')
+    moteur2 = canva.create_rectangle(1115, 320, 1130, 335, outline='white',
+                                     fill='black')
+    moteur3 = canva.create_rectangle(1115, 470, 1130, 485, outline='white',
+                                     fill='black')
+    moteur4 = canva.create_rectangle(1115, 620, 1130, 635, outline='white',
+                                     fill='black')
+
+
+def activer_radarmoteur(event, canva):
+
 
 
 def fenetre_menu(root):
@@ -448,6 +475,7 @@ def fenetre_robot(root):
     creation des radars, noir -> éteint, blanc -> allumé
 
     """
+    create_radarmoteur(canva)
 
     return fenetre_robot, canva, cadre
 
